@@ -1,0 +1,3 @@
+dashboard
+
+{{auth()->user()->email}}

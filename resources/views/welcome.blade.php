@@ -76,8 +76,8 @@
             </div>
 
             <div class="links">
-                <a href="/login">Login</a>
-                <a href="/register">Create an Account</a>
+                <a href="{{route('login')}}">Login</a>
+                <a href="{{route('register')}}">Create an Account</a>
 
             </div>
         </div>

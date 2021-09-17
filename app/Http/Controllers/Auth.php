@@ -12,7 +12,7 @@ class Auth extends Controller
     private function validateRegistration(Request $request)
     {
         $this->validate($request, [
-            'password' => 'bail|required|same:password_confirmation',
+            'password' => 'required|same:password_confirmation',
             'name' => 'required|max:100',
             'email' => 'required|unique:users|max:255',
 

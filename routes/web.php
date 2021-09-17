@@ -21,12 +21,10 @@ Route::get('/', function () {
 
 // guest
 
-Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', ['as' => 'login', 'uses' => 'Auth@login']);
     Route::post('/auth/login', ['as' => 'auth.login', 'uses' => 'Auth@loginUser']);
     Route::get('/register', ['as' => 'register', 'uses' => 'Auth@register']);
     Route::post('/auth/register', ['as' => 'auth.register', 'uses' => 'Auth@createNewUser']);
-});
 
 
 

@@ -38,7 +38,7 @@
                     <label for="floatingPassword">Password</label>
                 </div>
                 <div class="form-floating my-1">
-                    <input name='password' class="form-control" id="floatingPassword2" type="password" minlength="6"
+                    <input name='password_confirmation' class="form-control" id="floatingPassword2" type="password" minlength="6"
                         required placeholder='Confirm Password' />
                     <label for="floatingPassword2">Confirm Password</label>
                 </div>

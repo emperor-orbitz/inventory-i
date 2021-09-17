@@ -14,7 +14,7 @@ Register Page
     </div>
 @endif
 
-<form action="{{ route('auth.register.post') }}" method="POST">
+<form action="{{ route('auth.register') }}" method="POST">
     @csrf
     <input name='name' pattern="[a-zA-Z]{5,100}" required placeholder='Input your name' />
     <input name='email' type="email" required placeholder="Input your Email" />

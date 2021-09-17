@@ -76,5 +76,8 @@ class Auth extends Controller
 
     public function logout()
     {
+        FacadesAuth::logout();
+        return redirect('/login');
+
     }
 }

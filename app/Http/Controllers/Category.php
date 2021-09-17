@@ -22,9 +22,16 @@ class Category extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        try {
+            CategoryModel::create($request->input());
+            dd('created category');
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th);
+        } 
     }
 
     /**

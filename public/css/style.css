@@ -34,6 +34,17 @@ a{
 
 }
 
+
+
+@media only screen and (max-width: 600px) {
+.login-item{
+    flex:4;
+    width: 100%;
+    
+    }
+    
+}
+
 .navbar-brand{
     font-weight: bold;
 }

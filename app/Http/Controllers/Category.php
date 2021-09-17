@@ -3,90 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Category as CategoryModel;
+use App\Item;
 use Illuminate\Http\Request;
 
 class Category extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request, $id)
     {
         //
+        try {
+            $category = CategoryModel::where(['id' => $id])->get()->first();
+            $items = Item::where(['category_id' => $id])->get();
+            $categories =  CategoryModel::get();
+            return view('auth.category', ['category' => $category, 'items' => $items, 'categories' => $categories]);
+        } catch (\Throwable $th) {
+            //report
+            return back()->withErrors(['message', 'Unable to Get this category at this Moment']);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
         //
         try {
             CategoryModel::create($request->input());
-            dd('created category');
+            return back()->with('success', 'Category successfully created');
         } catch (\Throwable $th) {
-            //throw $th;
+            //report
+            return back()->withErrors(['message', 'Unable to Create Categories at this Moment']);
+        }
+    }
+
+
+    public function delete(CategoryModel $CategoryModel, $id)
+    {
+        try {
+            $CategoryModel::where('id', '=', $id)->delete();
+            return back()->with('success', 'Category successfully deleted');
+        } catch (\Throwable $th) {
+            //report
             dd($th);
-        } 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CategoryModel $c)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CategoryModel $c)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CategoryModel $c)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CategoryModel $c)
-    {
-        //
+            return back()->withErrors(['message', 'Unable to delete Categories at this Moment']);
+        }
     }
 }

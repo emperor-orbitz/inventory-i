@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class Auth extends Controller
 {
-    //
-
-    public function index()
-    {
-    }
-
+ 
     private function validateRegistration(Request $request)
     {
         $this->validate($request, [
@@ -78,6 +73,5 @@ class Auth extends Controller
     {
         FacadesAuth::logout();
         return redirect('/login');
-
     }
 }

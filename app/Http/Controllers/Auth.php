@@ -41,7 +41,7 @@ class Auth extends Controller
 
             $user = $request->input();
             User::saveUser($user);
-            return redirect('register');
+            return redirect('login');
         } catch (\Throwable $th) {
             abort(500);
         }

@@ -1,0 +1,23 @@
+name: Laravel Inventory X
+on: ['push']
+jobs:
+  Checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout of Main'
+        uses: actions/checkout@v2
+      - name: 'Create Procfile'
+        run: |
+          echo "web: vendor/bin/heroku-php-apache2 public/" >> Procfile
+          echo "Updated Procfile"
+      - name: 'Commit Changes for me'
+        run: |
+          git config --local user.name "Abdulmaleeq"
+          git add .
+          git commit -m "Updating the repo with Procfile"
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+
